@@ -3,8 +3,26 @@
 
 <head>
     <title>Ajax Example</title>
+    <!-- Add JQuery dependency -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <!-- Make AJAX call to fetch requested data -->
+    <script>
+        $(function () {
+            var $button = $('#load-more-posts');
+            $button.on('click', function () {
+                console.log('Button clicked, performing ajax call...');
+                $.ajax('more-posts.html', { method: 'GET' })
+                    .then(function (morePostsHtml) {
+                        console.log('Success: ', morePostsHtml);
+                        $button.replaceWith(morePostsHtml);
+                    });
+            });
+        });
+    </script>
 </head>
 
+<!-- Render page body -->
 <body>
     <section>
         <h1>Recent Posts</h1>
